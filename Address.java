@@ -1,5 +1,7 @@
 package lessonone;
 
+import java.util.Objects;
+
 public class Address {
 	
 	private static final short MIN_ZIP_CODE = 1_000;
@@ -31,11 +33,11 @@ public class Address {
 	}
 	
 	public Address(String state,
-			   String city,
-			   String street,
-			   String building,
-			   GeographicLocation location,
-			   int zipCode) {
+				   String city,
+				   String street,
+				   String building,
+				   GeographicLocation location,
+				   int zipCode) {
 		this(state, city, street, building, 0, location, zipCode);
 	}
 	
@@ -45,7 +47,7 @@ public class Address {
 				   String building,
 				   int apartmentNumber,
 				   GeographicLocation location,
-				   int zipCode) {
+				   int zipCode) { 
 		if(state == null || (state = state.trim()).isEmpty()) {
 			state = "undefined";
 		}
@@ -116,5 +118,42 @@ public class Address {
 	public void setZipCode(short zipCode) {
 		this.zipCode = zipCode;
 	}
+
+	@Override
+	public String toString() {
+		return "lessonone.Address ["
+				+ "state=" + state 
+				+ ", city=" + city 
+				+ ", street=" + street 
+				+ ", building=" + building
+				+ ", apartmentNumber=" + apartmentNumber 
+				+ ", location=" + location 
+				+ ", zipCode=" + zipCode + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(apartmentNumber, building, city, location, state, street, zipCode);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (!(obj instanceof Address)) {
+			return false;
+		}
+		Address other = (Address) obj;
+		return apartmentNumber == other.apartmentNumber &&
+			   Objects.equals(building, other.building) && 
+			   Objects.equals(city, other.city) && 
+			   Objects.equals(location, other.location) && 
+			   Objects.equals(state, other.state) && 
+			   Objects.equals(street, other.street) && 
+			   zipCode == other.zipCode;
+	}
+	
+	
 	
 }

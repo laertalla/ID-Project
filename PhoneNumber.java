@@ -131,6 +131,14 @@ public class PhoneNumber {
 			   actualOperatorNumber == ONE_OPERATOR_NUMBER || 
 			   actualOperatorNumber == VODAFONE_OPERATOR_NUMBER;
 	}
+
+	@Override
+	public String toString() {
+		return "lessonone.PhoneNumber [actualOperatorNumber=" + actualOperatorNumber + ", originalOperatorNumber="
+				+ originalOperatorNumber + ", simCardNumber=" + simCardNumber + "]";
+	}
+	
+	
 	
 }
 

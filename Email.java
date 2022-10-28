@@ -1,6 +1,7 @@
 package lessonone;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Email {
 	
@@ -139,23 +140,24 @@ public class Email {
 		return local + number;
 	}
 
-	private static boolean exist(String local, 
+	private static boolean exist(String lolcal, 
 								 String domain) {
 //		for(int i = 0; i < emails.size(); i++) {
 //			if(emails.get(i).local.equals(localPart) &&
 //			   emails.get(i).local.equals(domainPart)) {
 //				return true;
 //			}
-//		} 
+//		}
+		
 		for(Email e : emails) {
-			if(e.local.equals(local) && e.domain.equals(domain)) {
+			if(e.local.equals(lolcal) && e.domain.equals(domain)) {
 				return true;
 			}
 		}
 		return false;
 	}
 	
-	public String getEmail() {
+	public final String getEmail() {
 		return local + "@" + domain;
 	}
 	
@@ -166,6 +168,53 @@ public class Email {
 	public String getDomain() {
 		return domain;
 	}
+	
+	@Override
+	public String toString() {
+		return "lessonone.Email[local=" + local + ", domain=" + domain + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(domain, local);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (!(obj instanceof Email)) {
+			return false;
+		}
+		Email other = (Email) obj;
+		return Objects.equals(domain, other.domain) && 
+			   Objects.equals(local, other.local);
+//		if(local == null) {
+//			if(other.local != null) {
+//				return false;
+//			}
+//		}
+//		else if(other.local == null) {
+//			return false;
+//		}
+//		else if(!local.equals(other.local)) {
+//			return false;
+//		}
+//		if(domain == null) {
+//			if(other.domain != null) {
+//				return false;
+//			}
+//		}
+//		else if(other.domain == null) {
+//			return false;
+//		}
+//		else if(!domain.equals(other.domain)) {
+//			return false;
+//		}
+//		return true;
+	}
+	
 	
 	
 }
